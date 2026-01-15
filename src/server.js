@@ -1,8 +1,9 @@
-import { App } from './framework/app.js';
+import Application from './framework/app.js'; 
 import { registerTheatreRoutes } from './routes/theatre.routes.js';
 import { HttpError } from './framework/errors.js';
 
-const app = new App();
+const PORT = 5000;
+const app = new Application();
 
 app.use(async (req, res, next) => {
   console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
