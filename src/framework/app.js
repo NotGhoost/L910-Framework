@@ -4,7 +4,7 @@ import EventEmitter from 'events';
 // Если вы используете отдельный Router, раскомментируйте следующую строку:
 // import { Router } from './router.js'; 
 
-export class Application {
+export default class Application {
     constructor() {
         this.emitter = new EventEmitter();
         this.server = this._createServer();
