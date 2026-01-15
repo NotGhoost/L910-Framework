@@ -1,12 +1,12 @@
-const http = require('http');
-const EventEmitter = require('events');
+import http from 'http';
+import EventEmitter from 'events';
 
-module.exports = class Application {
+export default class Application {
     constructor() {
         this.emitter = new EventEmitter();
-        this.server = this._createServer();
         this.middlewares = [];
         this.routes = {}; 
+        this.server = this._createServer();
     }
 
     addRoute(method, path, handler) {

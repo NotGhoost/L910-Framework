@@ -1,0 +1,10 @@
+[
+  {
+    "id": "1",
+    "modelName": "Банка пива",
+    "weightKg": 12.5,
+    "passedQC": true,
+    "manufacturedAt": "2024-05-20",
+    "components": ["алюминий", "этикетка"]
+  }
+]
