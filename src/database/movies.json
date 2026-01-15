@@ -1,0 +1,48 @@
+[
+  {
+    "id": "1",
+    "title": "Начало",
+    "duration": 148,
+    "is3D": false,
+    "releaseDate": "2010-07-16T00:00:00.000Z",
+    "genres": [
+      "Фантастика",
+      "Боевик"
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Аватар 2",
+    "duration": 192,
+    "is3D": true,
+    "releaseDate": "2022-12-16T00:00:00.000Z",
+    "genres": [
+      "Фантастика",
+      "Приключения"
+    ]
+  },
+  {
+    "id": "36fb5a87-ccc5-460a-9e40-02049fcc397a",
+    "title": "Untitled",
+    "duration": 0,
+    "is3D": false,
+    "releaseDate": "2026-01-15T08:18:20.125Z",
+    "genres": []
+  },
+  {
+    "id": "285b370f-f0dd-4ffa-ab17-91c1226e2c53",
+    "title": "Untitled",
+    "duration": 0,
+    "is3D": false,
+    "releaseDate": "2026-01-15T08:18:22.673Z",
+    "genres": []
+  },
+  {
+    "id": "4f700ea1-1c19-4824-877c-cec2609b8f47",
+    "title": "Дюна 2",
+    "duration": 166,
+    "is3D": true,
+    "releaseDate": "2026-01-15T08:22:24.437Z",
+    "genres": []
+  }
+]
