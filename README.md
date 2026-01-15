@@ -1,26 +1,48 @@
-# Театр (вариант 13)
+# L910-Framework: Объединенный проект
 
-Мини-фреймворк на Node.js (без внешних модулей) и сервис для темы "Театр".
-Запуск: npm i + npm start.
+Мини-фреймворк на Node.js без внешних модулей. Включает в себя функционал для тем "Театр" и "Кинотеатр".
 
-## Сущности
-- plays: { id, title (string), duration (number), isPremiere (boolean), genres (Array<string>), premiereDate (Date string) }
-- actors: { id, name (string), age (number), isAvailable (boolean), roles (Array<string>), joinedDate (Date string) }
+## Запуск
+1. `npm install`
+2. `npm start` (запускает `node ./src/server.js`)
 
-## Роуты
+---
 
-### Plays
-- GET /plays
-- GET /plays/:id
-- POST /plays
-- PUT /plays/:id
-- PATCH /plays/:id
-- DELETE /plays/:id
+## Проект 1: Театр (Вариант 13)
 
-### Actors
-- GET /actors
-- GET /actors/:id
-- POST /actors
-- PUT /actors/:id
-- PATCH /actors/:id
-- DELETE /actors/:id
+### Сущности
+- **plays**: { id, title, duration, isPremiere, genres, premiereDate }
+- **actors**: { id, name, age, isAvailable, roles, joinedDate }
+
+### API Роуты (Театр)
+| Метод | Путь | Описание |
+| :--- | :--- | :--- |
+| GET | `/plays` | Список пьес |
+| POST | `/plays` | Создать пьесу |
+| ... | `/plays/:id` | Операции по ID |
+| GET | `/actors` | Список актеров |
+| POST | `/actors` | Добавить актера |
+| ... | `/actors/:id` | Операции по ID |
+
+---
+
+## Проект 2: Кинотеатр (Вариант 2)
+
+### Сущности
+- **Movie**: { id, title, duration, is3D, releaseDate, genres }
+- **Session**: { id, movieId, hallName, price, isVip, showTime }
+
+### API Роуты (Кинотеатр)
+| Метод | Путь | Описание |
+| :--- | :--- | :--- |
+| GET | `/movies` | Список фильмов |
+| POST | `/movies` | Создать фильм |
+| ... | `/movies/:id` | Операции по ID |
+| GET | `/sessions` | Список сеансов |
+| POST | `/sessions` | Создать сеанс |
+| ... | `/sessions/:id` | Операции по ID |
+
+## Команда (из ветки Cinema)
+*   Студент 1
+*   Студент 2
+*   Студент 3
