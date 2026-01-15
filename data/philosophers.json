@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Plato",
+    "school": "Idealism",
+    "alive": false,
+    "birthDate": "0427-01-01",
+    "ideas": ["Forms", "Soul"]
+  }
+]
