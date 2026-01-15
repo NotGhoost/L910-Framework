@@ -1,0 +1,12 @@
+{
+  "actors": [
+    {
+      "id": "ac-001",
+      "name": "Иван Петров",
+      "age": 32,
+      "isAvailable": true,
+      "roles": ["Гамлет", "Лаэрт"],
+      "joinedDate": "2023-09-01"
+    }
+  ]
+}

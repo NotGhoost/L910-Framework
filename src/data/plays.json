@@ -1,0 +1,12 @@
+{
+  "plays": [
+    {
+      "id": "pl-001",
+      "title": "Гамлет",
+      "duration": 180,
+      "isPremiere": true,
+      "genres": ["драма", "классика"],
+      "premiereDate": "2025-12-15T19:00:00Z"
+    }
+  ]
+}
