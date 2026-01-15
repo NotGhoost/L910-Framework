@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "title": "Cogito ergo sum",
+    "author": "Descartes",
+    "isPopular": true,
+    "createdAt": "1637-01-01",
+    "keywords": ["mind", "existence"]
+  }
+]
