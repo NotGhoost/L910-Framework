@@ -1,14 +1,20 @@
-import Application from './framework/Application.js'; // Убедитесь, что файл называется Application.js или app.js
+import Application from './framework/Application.js';
 import crypto from 'crypto';
+import fs from 'fs'; // Нужен для чтения файлов философии, если утилиты их не видят
 import { readData, writeData } from './utils/fileSync.js';
 import { readDb, writeDb } from './database/db.js';
 
 // --- НАСТРОЙКИ ---
-const PORT = 5000; // Объявляем ТОЛЬКО ОДИН РАЗ
+const PORT = 5000; 
 const app = new Application();
 
+// Вспомогательные функции для философии (чтобы сохранить их пути к папке ./data/)
+// Если ваши readData/readDb могут читать из любой папки, можно заменить на них
+const readPhil = (path) => JSON.parse(fs.readFileSync(path, 'utf-8'));
+const writePhil = (path, data) => fs.writeFileSync(path, JSON.stringify(data, null, 2));
+
 // ==========================
-// ЧАСТЬ 1: КИНОТЕАТР
+// ЧАСТЬ 1: КИНОТЕАТР (из 1-го кода)
 // ==========================
 
 app.get('/movies', (req, res) => {
@@ -41,7 +47,6 @@ app.post('/movies', (req, res) => {
 app.put('/movies/:id', (req, res) => {
     const movies = readData('movies.json');
     const index = movies.findIndex(m => m.id === req.params.id);
-    
     if (index !== -1) {
         movies[index] = { ...movies[index], ...req.body, id: req.params.id };
         writeData('movies.json', movies);
@@ -55,7 +60,6 @@ app.delete('/movies/:id', (req, res) => {
     let movies = readData('movies.json');
     const initialLength = movies.length;
     movies = movies.filter(m => m.id !== req.params.id);
-    
     if (movies.length !== initialLength) {
         writeData('movies.json', movies);
         res.status(200).json({ message: "Movie deleted" });
@@ -85,7 +89,7 @@ app.post('/sessions', (req, res) => {
 });
 
 // ==========================
-// ЧАСТЬ 2: ЗАВОД
+// ЧАСТЬ 2: ЗАВОД (из 1-го кода)
 // ==========================
 
 app.get('/workers', (req, res) => {
@@ -129,10 +133,64 @@ app.post('/products', (req, res) => {
 });
 
 // ==========================
+// ЧАСТЬ 3: ФИЛОСОФИЯ (адаптация 2-го кода под стиль 1-го)
+// ==========================
+
+app.get('/philosophers', (req, res) => {
+    res.json(readPhil('./data/philosophers.json'));
+});
+
+app.get('/philosophers/:id', (req, res) => {
+    const data = readPhil('./data/philosophers.json');
+    const philosopher = data.find(p => p.id == req.params.id);
+    if (philosopher) res.json(philosopher);
+    else res.status(404).json({ message: "Philosopher not found" });
+});
+
+app.post('/philosophers', (req, res) => {
+    const data = readPhil('./data/philosophers.json');
+    // Используем crypto.randomUUID() для согласованности с остальным кодом
+    const obj = { id: crypto.randomUUID(), ...req.body };
+    data.push(obj);
+    writePhil('./data/philosophers.json', data);
+    res.status(201).json(obj);
+});
+
+app.put('/philosophers/:id', (req, res) => {
+    let data = readPhil('./data/philosophers.json');
+    const index = data.findIndex(p => p.id == req.params.id);
+    if (index !== -1) {
+        data[index] = { ...req.body, id: req.params.id };
+        writePhil('./data/philosophers.json', data);
+        res.json(data[index]);
+    } else {
+        res.status(404).json({ message: "Philosopher not found" });
+    }
+});
+
+app.patch('/philosophers/:id', (req, res) => {
+    const data = readPhil('./data/philosophers.json');
+    const p = data.find(p => p.id == req.params.id);
+    if (p) {
+        Object.assign(p, req.body);
+        writePhil('./data/philosophers.json', data);
+        res.json(p);
+    } else {
+        res.status(404).json({ message: "Philosopher not found" });
+    }
+});
+
+app.get('/concepts', (req, res) => {
+    res.json(readPhil('./data/concepts.json'));
+});
+
+// ==========================
 // ЗАПУСК
 // ==========================
 
 app.listen(PORT, () => {
     console.log(`🚀 Сервер запущен на порту ${PORT}`);
-    console.log(`Ссылка: http://localhost:${PORT}/movies`);
+    console.log(`Кинотеатр: http://localhost:${PORT}/movies`);
+    console.log(`Завод: http://localhost:${PORT}/workers`);
+    console.log(`Философия: http://localhost:${PORT}/philosophers`);
 });
